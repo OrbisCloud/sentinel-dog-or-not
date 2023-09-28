@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from typing import List, Dict
+from typing import List, Dict, Any
 from core.ml_cost import calculate_logistic_cost
 from dto.ml_matrix_base import Matrix
 from dto.ml_predictions import Predictions
@@ -31,7 +31,7 @@ class Plot:
 		plt.plot(x_labels, self.all_costs, 'o')
 		plt.show()
 	
-	def cast_cost_to_payload(self) -> List[Dict[str, List[float] | str | bool]]:
+	def cast_cost_to_payload(self) -> List[Dict[str, Any]]:
 		logger.info("cast_cost_to_payload :: Casting costs to payload ...")
 		n_features: int = len(self.all_costs[0]) if len(self.all_costs) > 0 else 0
 		costs_per_feature: Dict[str, List[float]] = {}
@@ -43,7 +43,7 @@ class Plot:
 			for index, cost in enumerate(cost_entry):
 				costs_per_feature[str(index)].append(cost)
 		
-		cost_payload: List[Dict[str, List[float] | str | bool]] = []
+		cost_payload: List[Dict[str, Any]] = []
 		for feature, costs in costs_per_feature.items():
 			cost_payload.append(
 				{

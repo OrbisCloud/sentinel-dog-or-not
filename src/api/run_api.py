@@ -12,7 +12,7 @@ from dto.ml_hypothesis import Hypothesis
 from core.ml_gradient import calculate_predictions, calculate_gradient_descent
 from tools.ml_load import import_csv_file
 from tools.ml_plot import Plot
-from typing import List, Dict
+from typing import List, Dict, Any
 from flask.wrappers import Response
 
 
@@ -35,7 +35,7 @@ def ping():
 
 
 @run_api.route('/backprop/<int:epochs>', methods=['GET'])
-def run_backpropagation_algorithm(epochs: int) -> List[Dict[str, List[float] | str | bool]]:
+def run_backpropagation_algorithm(epochs: int) -> List[Dict[str, Any]]:
     logger.info('run_backpropagation_algorithm :: epochs :: %s' % epochs)
     
     hypothesis: Hypothesis = import_csv_file(path, standardize=True)
