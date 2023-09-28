@@ -10,7 +10,7 @@ flask = "*"
 [dev-packages]
 
 [requires]
-python_version = "3.11"
+python_version = "3.9"
 
 [scripts]
 flask = 'pipenv run python src/main.py'
