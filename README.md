@@ -1,4 +1,5 @@
 Dog or not machine learning
+-
 
 With this tool, you can train logistic classifiers, as well as machine learning models.
 It has no dependencies except for flask.
@@ -21,12 +22,10 @@ Animal categories:
 
 Logistic regression
 
-
 ![logistic](png/logistic_regression.PNG)
 
 
 Neural network 3L (3 layers)
-
 
 ![neural](png/neural_network_3L.PNG)
 
