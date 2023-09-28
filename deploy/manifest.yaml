@@ -12,7 +12,7 @@ spec:
     protocol: TCP
     targetPort: 7777
   selector:
-    app: sentinel-dog-or-not
+    app: dog-or-not
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -50,7 +50,7 @@ metadata:
   name: dog-or-not-ingress
   namespace: sentinel
   annotations:
-    # traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: kube-system-headers@kubernetescrd
     cert-manager.io/cluster-issuer: letsencrypt-prod
   labels:
