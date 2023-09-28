@@ -21,12 +21,10 @@ Animal categories:
 
 Logistic regression
 
-
 ![logistic](png/logistic_regression.PNG)
 
 
 Neural network 3L (3 layers)
-
 
 ![neural](png/neural_network_3L.PNG)
 
