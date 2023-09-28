@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-matplotlib = "*"
-flask = "*"
+flask = "2.3.3"
+gunicorn = "21.2.0"
 
 [dev-packages]
 
@@ -13,4 +13,4 @@ flask = "*"
 python_version = "3.9"
 
 [scripts]
-flask = 'pipenv run python src/main.py'
+start = "pipenv run gunicorn -b 0.0.0.0:7777 -w 2 --chdir src/ main:app"

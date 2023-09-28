@@ -7,4 +7,5 @@ RUN pip install pipenv==2023.7.23
 RUN pipenv sync && pipenv install
 
 EXPOSE 7777
-CMD ["pipenv", "run", "flask"]
+
+CMD ["pipenv", "run", "start"]
