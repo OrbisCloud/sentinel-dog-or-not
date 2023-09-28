@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: sentinel-dog-or-not
+  name: sentinel-dog-or-not
+  namespace: sentinel
+spec:
+  ports:
+  - name: port-1
+    port: 7777
+    protocol: TCP
+    targetPort: 7777
+  selector:
+    app: sentinel-dog-or-not
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentinel-dog-or-not
+  namespace: sentinel
+  labels:
+    app: sentinel-dog-or-not
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sentinel-dog-or-not
+  template:
+    metadata:
+      labels:
+        app: sentinel-dog-or-not
+    spec:
+      hostAliases:
+      - ip: 74.220.20.142
+        hostnames:
+        - sentinel-dog-or-not.0885c588-d112-482b-a98c-8e1f5a02d70c.k8s.civo.com
+      containers:
+      - name: sentinel-dog-or-not
+        image: dregistry.0885c588-d112-482b-a98c-8e1f5a02d70c.k8s.civo.com/sentinel-dog-or-not:main
+        imagePullPolicy: Always
+        ports: 
+        - containerPort: 7777
+          name: http
+          protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sentinel-dog-or-not-ingress
+  namespace: sentinel
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-headers@kubernetescrd
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  labels:
+    app: sentinel-dog-or-not
+spec:
+  ingressClassName: traefik
+  tls:
+  - hosts:
+    - sentinel-dog-or-not.0885c588-d112-482b-a98c-8e1f5a02d70c.k8s.civo.com
+    secretName: sentinel-dog-or-not.0885c588-d112-482b-a98c-8e1f5a02d70c.k8s.civo.com-tls
+  rules:
+  - host: sentinel-dog-or-not.0885c588-d112-482b-a98c-8e1f5a02d70c.k8s.civo.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sentinel-dog-or-not
+            port:
+              number: 7777
