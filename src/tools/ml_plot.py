@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 from typing import List, Dict, Any
 from core.ml_cost import calculate_logistic_cost
 from dto.ml_matrix_base import Matrix
@@ -22,14 +21,15 @@ class Plot:
 	def add(self, costs: Matrix):
 		self.all_costs.extend(costs.points)
 	
-	def show(self):
-		axes = plt.gca()
-		x_labels = []
-		print(f"plotting cost ...")
-		for i in range(0, len(self.all_costs)):
-			x_labels.append(i)
-		plt.plot(x_labels, self.all_costs, 'o')
-		plt.show()
+	def show(self) -> None:
+		return
+		# axes = plt.gca()
+		# x_labels = []
+		# print(f"plotting cost ...")
+		# for i in range(0, len(self.all_costs)):
+		# 	x_labels.append(i)
+		# plt.plot(x_labels, self.all_costs, 'o')
+		# plt.show()
 	
 	def cast_cost_to_payload(self) -> List[Dict[str, Any]]:
 		logger.info("cast_cost_to_payload :: Casting costs to payload ...")

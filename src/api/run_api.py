@@ -16,7 +16,7 @@ from typing import List, Dict, Any
 from flask.wrappers import Response
 
 
-path: Path = Path(Path('.').absolute()) / 'src' / 'data' / 'neural_training_data.csv'
+path: Path = Path(Path('.').absolute()) / 'data' / 'neural_training_data.csv'
 run_api: Blueprint = Blueprint(name='run_api', import_name='run_api')
 
 

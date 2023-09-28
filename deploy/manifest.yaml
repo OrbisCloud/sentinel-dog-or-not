@@ -50,7 +50,7 @@ metadata:
   name: dog-or-not-ingress
   namespace: sentinel
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    # traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: kube-system-headers@kubernetescrd
     cert-manager.io/cluster-issuer: letsencrypt-prod
   labels:
