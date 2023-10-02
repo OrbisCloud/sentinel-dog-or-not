@@ -23,12 +23,11 @@ def calculate_forward_propagation(network: Network, metrics: bool = False) -> Ma
 	
 	for l in range(0, network.layers-1):
 		theta: Theta = network.get_theta(l)
-		layer: Predictions = network.get_layer(l)
 		
 		# bias node
 		m_bias: List[List[float]] = deepcopy(network.get_layer(l).points)
 		[row.append(1) for row in m_bias]
-		bias: matrix = Matrix(m_bias, f"Layer {l}, with bias node added")
+		bias: Matrix = Matrix(m_bias, f"Layer {l}, with bias node added")
 
 		result: Matrix = calculate_predictions(theta, bias)
 		network.set_layer(l+1, result)
@@ -42,7 +41,7 @@ def calculate_forward_propagation(network: Network, metrics: bool = False) -> Ma
 		print(y_actual)
 		print(result)
 		
-	return network, cost
+	return network, cost, result
 	
 	
 # -~~~~~~~-
@@ -183,7 +182,7 @@ def propagate(network: Network, metrics: bool = False) -> Network:
 	
 	for m in range(0, len(network.hypotheses)):
 		network.set_training_example(m)
-		network, cost = calculate_forward_propagation(network)
+		network, cost, result = calculate_forward_propagation(network)
 		network = calculate_back_propagation(network, metrics=metrics)
 	network = calculate_neural_descent(network, metrics=metrics)
 

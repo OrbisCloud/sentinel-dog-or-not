@@ -56,7 +56,6 @@ def import_csv_file(path: Path, standardize: bool = True) -> Hypothesis:
 	
 	for i in range(0, len(y_values)):
 		y_values[i] = create_one_hot_vector(y_values[i], y_max)
-		
 	hypothesis: Hypothesis = Hypothesis(x_values, y_values)
 	if standardize:
 		return Hypothesis(standardize_values(hypothesis).points, y_values)

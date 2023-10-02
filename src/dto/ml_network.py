@@ -101,6 +101,9 @@ class Network:
 		training_values.name = f"layer 0: training example ({training_example})"
 		self.set_layer(0, training_values)
 		self.y_actual = self.hypotheses[training_example].mat_y()
+	
+	def add_hypothesis(self, hypothesis: Hypothesis) -> None:
+		self.hypotheses.append(hypothesis)
 			
 	def reset_deltas(self):
 		for delta in self.deltas:
